@@ -200,7 +200,7 @@ plt.title('Confusion Matrix')
 plt.show()
 ```
 
-![Confusion Matrix](https://placeholder-image.com/confusion_matrix.png)
+![Confusion Matrix](https://raw.githubusercontent.com/louaibenaissa/ScratchNN/master/confmatr.png?raw=true))
 
 The confusion matrix helps identify which digits are most commonly confused with each other. For example, you might observe that '5' and '3', or '4' and '9' are frequently misclassified due to their visual similarities.
 
