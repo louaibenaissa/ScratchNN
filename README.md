@@ -202,8 +202,6 @@ plt.show()
 
 ![Confusion Matrix](https://raw.githubusercontent.com/louaibenaissa/ScratchNN/master/confmatr.png?raw=true))
 
-The confusion matrix helps identify which digits are most commonly confused with each other. For example, you might observe that '5' and '3', or '4' and '9' are frequently misclassified due to their visual similarities.
-
 ## Results
 
 With proper hyperparameter tuning, this neural network implementation can achieve accuracy above 95% on the MNIST test set, which is impressive for a simple feedforward neural network with sigmoid activation functions.
