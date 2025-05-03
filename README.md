@@ -175,7 +175,7 @@ plt.legend()
 plt.show()
 ```
 
-![Training Loss Curve](https://placeholder-image.com/training_loss.png)
+![Training Loss Curve]([https://placeholder-image.com/training_loss.png](https://github.com/louaibenaissa/ScratchNN/blob/master/output.png?raw=true))
 
 ### Confusion Matrix
 
