@@ -116,8 +116,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 _, _, y_one_hot_train, y_one_hot_test = train_test_split(X, y_one_hot, test_size=0.2, random_state=42)
 
 # Create and train the neural network
+# Architecture: 784 (input) → 128 (hidden) → 64 (hidden) → 10 (output)
 model = NeuralNet(dims=[784, 128, 64, 10])
-losses = model.train(X_train, y_one_hot_train, nb_iters=100, learning_rate=0.01, batch_size=32, verbose=True)
+losses = model.train(
+    X_train, 
+    y_one_hot_train, 
+    nb_iters=100,           # Number of training iterations
+    learning_rate=0.01,     # Step size for gradient descent
+    batch_size=32,          # Mini-batch size for stochastic gradient descent
+    verbose=True            # Print loss during training
+)
 
 # Evaluate the model
 accuracy = model.evaluate(X_test, y_test)
@@ -147,6 +155,55 @@ plt.axis('off')
 plt.show()
 ```
 
+## Visualization
+
+### Training Loss
+
+To visualize the training loss over iterations:
+
+```python
+import matplotlib.pyplot as plt
+
+# Plot training loss
+plt.figure(figsize=(10, 6))
+plt.plot(losses, label='Training Loss')
+plt.title('Training Loss Over Iterations')
+plt.xlabel('Iterations')
+plt.ylabel('Loss')
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+![Training Loss Curve](https://placeholder-image.com/training_loss.png)
+
+### Confusion Matrix
+
+To evaluate the model's performance across different classes:
+
+```python
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+
+# Generate predictions
+y_pred = np.argmax(model.predict(X_test), axis=1)
+
+# Create confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Plot confusion matrix
+plt.figure(figsize=(10, 8))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=range(10), yticklabels=range(10))
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Confusion Matrix')
+plt.show()
+```
+
+![Confusion Matrix](https://placeholder-image.com/confusion_matrix.png)
+
+The confusion matrix helps identify which digits are most commonly confused with each other. For example, you might observe that '5' and '3', or '4' and '9' are frequently misclassified due to their visual similarities.
+
 ## Results
 
 With proper hyperparameter tuning, this neural network implementation can achieve accuracy above 95% on the MNIST test set, which is impressive for a simple feedforward neural network with sigmoid activation functions.
@@ -156,3 +213,4 @@ For better performance, consider:
 - Increasing the number of neurons per layer
 - Using different activation functions like ReLU
 - Implementing more advanced optimization techniques
+- Adding regularization (L2 or dropout) to prevent overfitting
